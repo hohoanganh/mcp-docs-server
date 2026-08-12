@@ -6,6 +6,8 @@
 
 # Tài Liệu Nghiên Cứu AK Active Kernel MCP Server
 
+| [EN](README.md) | VN |
+
 Một cấu hình server mã nguồn mở, miễn phí dựa trên **[Model Context Protocol](https://modelcontextprotocol.io)** dành cho tác vụ lập trình cùng AI trên **AK (Active Kernel) Framework**.
 
 Server MCP này giúp AI agent của bạn:

@@ -1,10 +1,12 @@
 <div align="center">
-  
+
 ![Repo Traffic](https://komarev.com/ghpvc/?username=mcp-docs-server&label=Repo+Traffic&color=blue&style=flat-square)
 
 </div>
 
 # AK Active Kernel documentation MCP server
+
+| EN | [VN](README_VN.md) |
 
 A free, public **[Model Context Protocol](https://modelcontextprotocol.io) server** that gives AI coding tools accurate, queryable documentation for the **AK (Active Kernel)** event-driven MCU framework (firmware: [`ak-base-kit-stm32l151`](https://github.com/the-ak-foundation/ak-base-kit-stm32l151)).
 
@@ -41,6 +43,7 @@ Signatures come from the vendored kernel headers; semantics/examples are layered
 ## What it exposes
 
 **Tools**
+
 | Tool | Purpose |
 | --- | --- |
 | `start_ak_project(project_name?, ref?)` | resolve the **latest** base-kit release and return download/extract commands + a customization plan |
@@ -55,7 +58,8 @@ Signatures come from the vendored kernel headers; semantics/examples are layered
 **Prompts:** `ak-new-project`, `ak-new-task`, `ak-new-driver`, `ak-debug` - guided scaffolding/debugging that enforces conventions and guardrails.
 
 **Debugging loop:** the board's only debug surface is its 115200 UART console (leveled printf
-+ an interactive shell). Agents capture it non-interactively with
+
+- an interactive shell). Agents capture it non-interactively with
 [`examples/ak-console.py`](examples/ak-console.py) (pyserial; destructive shell commands are
 blocked unless `--allow-destructive`), then feed the text to `analyze_ak_log`.
 
