@@ -159,3 +159,32 @@ tags: timer, periodic
 ---
 Markdown body (semantics, examples) ...
 ```
+
+## Xây dựng cơ sở tri thức MCP cho AI Agent
+
+Ai từng giao cho AI Agent viết code trong dự án lớn đều gặp cùng một kịch bản: Agent sinh ra vài trăm dòng, chạy được nhưng không theo style và quy tắc của team. Diff dài quá, ta lười đọc, bấm accept. Lần sau Agent viết nhiều hơn, ta lười hơn và nó lệch dần khỏi hướng mình muốn. Kết cục là mất niềm tin: test sơ qua thấy chạy đúng, nhưng trong lòng vẫn không chắc.
+
+Nguyên nhân thường không nằm ở model, mà ở chỗ Agent không biết gì về thế giới của bạn. Những quy tắc cả team đều thuộc lòng lại chưa bao giờ được viết ra ở dạng Agent đọc được. Vậy nên việc cần làm là xây cơ sở tri thức cho Agent, bằng SKILLS, bằng MCP, hoặc cả hai.
+
+### MCP cung cấp gì cho Agent
+
+MCP có thể triển khai online qua một domain, hoặc offline qua CLI chạy ngay trên máy. Dù cách nào, nó mang lại cho Agent:
+
+- **Style của codebase**: cách đặt tên, cấu trúc thư mục, quy ước comment, format.
+- **Quy tắc phải tuân theo**: những gì team đã thống nhất, không cần bàn lại mỗi lần.
+- **Hướng dẫn triển khai**: công thức từng bước để thêm một module, một driver, một tính năng.
+- **Giới hạn và điều cấm**: thư mục read-only, API deprecated, chỗ Agent không được tự ý sửa.
+- **Quy trình bắt buộc**: tự debug, nạp code chạy test thật, commit xong từng tính năng rồi mới đi tiếp.
+
+Cấu trúc gồm ba phần: **Tools** (hành động Agent gọi được: build, nạp code, đọc log UART, chạy test), **Resources** (kho tri thức tra cứu) và **Prompts** (quy trình đóng gói sẵn).
+
+Trong đó Tools tạo khác biệt lớn nhất. Một Agent tự build được, tự đọc được log lỗi, tự chạy được test là Agent có vòng phản hồi khép kín, thay vì viết code rồi ngồi đoán là nó đúng.
+Vì sao phải hiểu thật rõ framework
+Đây là phần không có đường tắt, và cũng là phần quyết định thành bại.
+
+MCP chỉ tốt đúng bằng tri thức bạn nạp vào. Muốn viết ra được quy tắc, bạn phải biết quy tắc nào thật sự quan trọng và quy tắc nào chỉ là thói quen. Muốn đặt giới hạn, bạn phải biết chỗ nào trong framework là nhạy cảm, sửa vào là hỏng. Muốn viết hướng dẫn triển khai, bạn phải nắm được con đường đúng để thêm một tính năng, chứ không phải con đường đầu tiên nghĩ ra.
+
+Nói cách khác, **xây MCP thực chất là quá trình biến tri thức ngầm của team thành tri thức tường minh**. Phần lớn công sức nằm ở đó, không nằm ở code của MCP server.
+Một ưu điểm khác: khi tri thức đã nằm sẵn trong MCP, Agent không cần "thông minh" để đoán ra style của bạn nữa, chỉ cần đọc và làm theo. Bạn có thể hạ xuống model rẻ hơn mà vẫn yên tâm về chất lượng.
+
+Đầu tư vào cơ sở tri thức, suy cho cùng, là đầu tư vào niềm tin. Khi đã tin được, bạn mới thật sự bắt đầu đi nhanh.
