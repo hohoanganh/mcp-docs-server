@@ -1,12 +1,12 @@
 ---
 id: agent-workflow
-title: "Recipe: The develop → verify → commit workflow"
+title: "Recipe: The develop -> verify -> commit workflow"
 section: guide
 tags: workflow, process, release, debug, commit, git, lcd, fatal, verify, best-practice, checklist
 summary: Develop and debug with -URELEASE, commit after every finished feature (if a git repo exists), verify any new screen with decode_ak_lcd, and check fatal after the final build - fixing anything that surfaces.
 ---
 
-# Recipe: The develop → verify → commit workflow
+# Recipe: The develop -> verify -> commit workflow
 
 Four rules that keep AK development safe and reviewable. Follow them by default; they are also
 baked into the project steering file (ak-docs `examples/copilot-instructions.md`).

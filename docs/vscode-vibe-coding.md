@@ -44,16 +44,16 @@ Tạo file `.vscode/mcp.json` trong thư mục dự án (có sẵn template ở 
 }
 ```
 
-Lưu file → VS Code hiện nút **Start** ngay trên file đó, bấm để kết nối (lần đầu sẽ hỏi Trust, chọn cho phép).
+Lưu file -> VS Code hiện nút **Start** ngay trên file đó, bấm để kết nối (lần đầu sẽ hỏi Trust, chọn cho phép).
 
 ### Cách B - qua Command Palette (gắn theo user, mọi dự án)
 
-`Ctrl/Cmd + Shift + P` → **MCP: Add Server** → **HTTP** → dán URL `/mcp` → đặt tên `ak-docs` → chọn lưu vào *User* hoặc *Workspace*.
+`Ctrl/Cmd + Shift + P` -> **MCP: Add Server** -> **HTTP** -> dán URL `/mcp` -> đặt tên `ak-docs` -> chọn lưu vào *User* hoặc *Workspace*.
 
 ### Bật và kiểm tra
 
 1. Mở **Chat view** (`Ctrl/Cmd + Alt + I`), đổi dropdown chế độ sang **Agent**.
-2. Bấm icon 🔧 (**Tools**) → thấy nhóm `ak-docs` với 8 tool: `start_ak_project`, `search_ak_docs`, `get_ak_api`, `list_ak_api`, `get_ak_guide`, `get_ak_guardrails`, `analyze_ak_log`, `decode_ak_lcd` → tick bật.
+2. Bấm icon 🔧 (**Tools**) -> thấy nhóm `ak-docs` với 8 tool: `start_ak_project`, `search_ak_docs`, `get_ak_api`, `list_ak_api`, `get_ak_guide`, `get_ak_guardrails`, `analyze_ak_log`, `decode_ak_lcd` -> tick bật.
 3. Lệnh **MCP: List Servers** cho biết trạng thái Running/Stopped và xem log nếu lỗi.
 
 ---
@@ -72,12 +72,12 @@ Tạo `.cursor/mcp.json`:
   }
 }
 ```
-Vào **Settings → MCP** để thấy server xanh, rồi chat ở chế độ **Agent**.
+Vào **Settings -> MCP** để thấy server xanh, rồi chat ở chế độ **Agent**.
 
 ### Cline / Roo Code (extension trong VS Code)
-Mở panel Cline → icon **MCP Servers** → **Configure MCP Servers** → dán nội dung
+Mở panel Cline -> icon **MCP Servers** -> **Configure MCP Servers** -> dán nội dung
 [`examples/cline-mcp-settings.json`](../examples/cline-mcp-settings.json) (dùng
-`type: "streamableHttp"` và auto-approve 5 tool chỉ-đọc). Hoặc dùng tab **Remote Servers →
+`type: "streamableHttp"` và auto-approve 5 tool chỉ-đọc). Hoặc dùng tab **Remote Servers ->
 Add** rồi nhập Name `ak-docs` + URL `…/mcp`.
 
 ### Claude Code (terminal trong VS Code)
@@ -91,7 +91,7 @@ Hoặc đặt [`examples/claude-code.mcp.json`](../examples/claude-code.mcp.json
 Chép [`examples/claude-desktop.json`](../examples/claude-desktop.json) vào file cấu hình
 (`%APPDATA%\Claude\claude_desktop_config.json` trên Windows; `~/Library/Application
 Support/Claude/…` trên macOS) - bản mẫu bắc cầu remote qua stdio bằng `mcp-remote` (cần Node).
-Bản Pro/Team có thể thêm trực tiếp qua **Settings → Connectors** (dán URL, không cần cầu nối).
+Bản Pro/Team có thể thêm trực tiếp qua **Settings -> Connectors** (dán URL, không cần cầu nối).
 
 ### OpenAI Codex (CLI + extension)
 Gộp [`examples/codex-config.toml`](../examples/codex-config.toml) vào `~/.codex/config.toml`,
@@ -130,7 +130,7 @@ Bạn **không cần tự tải** base kit: chỉ mở thư mục trống rồi 
 3. **"Lái" agent dùng MCP** (rất nên làm): copy [`examples/copilot-instructions.md`](../examples/copilot-instructions.md) vào `.github/copilot-instructions.md` của dự án (Cursor: `.cursor/rules/`; Claude Code: `CLAUDE.md`; Codex: `AGENTS.md`). File này buộc agent gọi `start_ak_project` khi bắt đầu dự án và `get_ak_guardrails` / `get_ak_guide` trước khi viết code.
 4. **Bật Agent mode**, tick các tool `ak-docs` (gồm `start_ak_project`).
 5. **Chat rule khởi tạo**, ví dụ: *"Tạo dự án AK mới tên `smart-fan`: đọc cảm biến nhiệt qua ADC và bật quạt khi quá ngưỡng."*
-   → agent gọi `start_ak_project` (lấy release mới nhất), chạy lệnh `curl … | tar` để tải + giải nén vào `smart-fan/`, rồi tùy biến theo `get_ak_guide`.
+   -> agent gọi `start_ak_project` (lấy release mới nhất), chạy lệnh `curl … | tar` để tải + giải nén vào `smart-fan/`, rồi tùy biến theo `get_ak_guide`.
 6. **Duyệt diff**: kiểm tra agent chỉ sửa trong `application/sources/app/` (và `driver/`), không đụng `ak/`, `boot/`, `networks/`, `common/`.
 7. **Build kiểm chứng**: `cd smart-fan/application && make` (xem `CLAUDE.md` trong source vừa tải về toolchain - cần shell Unix/WSL).
 
@@ -143,28 +143,28 @@ Bạn **không cần tự tải** base kit: chỉ mở thư mục trống rồi 
 Cứ mô tả nhu cầu tự nhiên; với steering file ở trên, agent sẽ tự tra MCP. Vài ví dụ:
 
 - > "Khởi tạo dự án AK mới tên `door-lock` dựa trên base kit mới nhất, có 1 task đọc nút bấm và điều khiển relay."
-  → agent gọi `start_ak_project` → tải + giải nén release mới nhất vào `door-lock/`, rồi `get_ak_guide("create-task")`/`("create-driver")` để tùy biến. (Prompt dựng sẵn: `ak-new-project`.)
+  -> agent gọi `start_ak_project` -> tải + giải nén release mới nhất vào `door-lock/`, rồi `get_ak_guide("create-task")`/`("create-driver")` để tùy biến. (Prompt dựng sẵn: `ak-new-project`.)
 
 - > "Tạo một task mới `task_buzzer` kêu bíp 3 lần khi nhận tín hiệu báo động. Theo đúng chuẩn AK."
-  → agent gọi `get_ak_guide("create-task")` + `get_ak_guardrails()` rồi sinh đủ 5 chỗ sửa (`task_list.h/.cpp`, `app.h`, `task_buzzer.cpp`, `Makefile.mk`).
+  -> agent gọi `get_ak_guide("create-task")` + `get_ak_guardrails()` rồi sinh đủ 5 chỗ sửa (`task_list.h/.cpp`, `app.h`, `task_buzzer.cpp`, `Makefile.mk`).
 
 - > "Viết driver cho cảm biến nhiệt qua chân ADC, đưa giá trị về một task mỗi 500ms."
-  → `get_ak_guide("create-driver")` → driver dùng function-pointer injection + wiring BSP + hook polling.
+  -> `get_ak_guide("create-driver")` -> driver dùng function-pointer injection + wiring BSP + hook polling.
 
 - > "Hàm `timer_set` nhận những tham số gì? Cho ví dụ one-shot 2 giây."
-  → `get_ak_api("timer_set")` trả chữ ký + ngữ nghĩa re-arm + ví dụ.
+  -> `get_ak_api("timer_set")` trả chữ ký + ngữ nghĩa re-arm + ví dụ.
 
 - > "Tôi muốn màn hình OLED hiển thị đồng hồ, cập nhật mỗi giây."
-  → `get_ak_guide("create-screen")`.
+  -> `get_ak_guide("create-screen")`.
 
 - > "Vì sao firmware reset liên tục với log FATAL 'MT' 0x30?"
-  → `search_ak_docs("MT 0x30 fatal timer")` → hết pool timer, chỉ cách chỉnh `ak.cfg.mk` (`tune-pools`).
+  -> `search_ak_docs("MT 0x30 fatal timer")` -> hết pool timer, chỉ cách chỉnh `ak.cfg.mk` (`tune-pools`).
 
 - > "Màn hình OLED của board ở COM3 đang hiển thị gì?"
-  → agent chạy `python ak-console.py --port COM3 --cmd "lcd d"`, dán dump vào `decode_ak_lcd` → "nhìn" màn hình dưới dạng text art + ảnh PNG kèm thống kê (trống/bounding box).
+  -> agent chạy `python ak-console.py --port COM3 --cmd "lcd d"`, dán dump vào `decode_ak_lcd` -> "nhìn" màn hình dưới dạng text art + ảnh PNG kèm thống kê (trống/bounding box).
 
 - > "Board cắm ở COM3 cứ ~30 giây lại reset một lần. Tự debug qua UART và tìm nguyên nhân."
-  → agent gọi `get_ak_guide("debug-uart-shell")`, chạy `python ak-console.py --port COM3 --watch 15` + `--cmd "ver" --cmd "fatal l" --cmd "fatal m"`, dán toàn bộ output vào `analyze_ak_log` → chẩn đoán (FATAL code / watchdog / handler chậm) + lệnh chạy tiếp. (Prompt dựng sẵn: `ak-debug`. Cần `pip install pyserial`; script chỉ tự chạy lệnh read-only, lệnh phá hoại bị chặn trừ khi `--allow-destructive`.)
+  -> agent gọi `get_ak_guide("debug-uart-shell")`, chạy `python ak-console.py --port COM3 --watch 15` + `--cmd "ver" --cmd "fatal l" --cmd "fatal m"`, dán toàn bộ output vào `analyze_ak_log` -> chẩn đoán (FATAL code / watchdog / handler chậm) + lệnh chạy tiếp. (Prompt dựng sẵn: `ak-debug`. Cần `pip install pyserial`; script chỉ tự chạy lệnh read-only, lệnh phá hoại bị chặn trừ khi `--allow-destructive`.)
 
 **Mẹo:** nếu agent "quên" dùng MCP, ép thẳng: *"Dùng tool ak-docs, gọi get_ak_guide('create-task') trước khi viết."* Trong VS Code có thể tham chiếu tool bằng `#get_ak_guide` ngay trong prompt.
 
@@ -178,7 +178,7 @@ Cứ mô tả nhu cầu tự nhiên; với steering file ở trên, agent sẽ t
 | Server "Stopped"/đỏ | Mở URL gốc trên trình duyệt xem landing page có hiện không; kiểm tra lại đúng đường dẫn `/mcp`. |
 | 404 / không kết nối | Sai URL hoặc thiếu `/mcp`. Streamable HTTP dùng `/mcp`; client chỉ hỗ trợ SSE thì đổi sang `/sse`. |
 | Agent vẫn "chế" API sai | Thêm/đậm hơn steering file (mục 3.3); hoặc yêu cầu trực tiếp gọi `get_ak_api`. |
-| Cần xem log | VS Code: **MCP: List Servers → ak-docs → Show Output**. |
+| Cần xem log | VS Code: **MCP: List Servers -> ak-docs -> Show Output**. |
 
 ---
 

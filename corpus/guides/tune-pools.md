@@ -9,7 +9,7 @@ apis: get_pure_msg_pool_used_max, get_common_msg_pool_used_max, get_dynamic_msg_
 
 # Recipe: Size and tune the pools
 
-Pools are fixed at compile time. Too small → `FATAL` at runtime; too large → wasted RAM on a 16 KB part. Size them from measured peak usage, not guesswork.
+Pools are fixed at compile time. Too small -> `FATAL` at runtime; too large -> wasted RAM on a 16 KB part. Size them from measured peak usage, not guesswork.
 
 ## 1. Measure the high-water marks
 

@@ -229,7 +229,7 @@ export function analyzeLog(raw: string, corpus: Corpus): string {
     findings.push(`Crash counters: **fatal_times=${f}**, **restart_times=${r}**.`);
     if (r > f * 2 && r - f >= 3) {
       interpretation.push(
-        `- Restarts (${r}) far exceed FATALs (${f}) → most resets are **not** FATALs: suspect the **watchdog** (32 s independent / 20 s soft) - a handler or loop blocks too long - or power issues. Check \`fatal m\` for huge exe_time entries.`
+        `- Restarts (${r}) far exceed FATALs (${f}) -> most resets are **not** FATALs: suspect the **watchdog** (32 s independent / 20 s soft) - a handler or loop blocks too long - or power issues. Check \`fatal m\` for huge exe_time entries.`
       );
     }
   }
@@ -276,7 +276,7 @@ export function analyzeLog(raw: string, corpus: Corpus): string {
     }
     if (maxWait.wait >= WAIT_WARN_MS) {
       interpretation.push(
-        `- wait_time ${maxWait.wait} ms for task ${describeTaskId(maxWait.task)} sig ${maxWait.sig} → **starvation**: higher-priority queues (or one slow handler) delayed it. Check priorities in app_task_table[].`
+        `- wait_time ${maxWait.wait} ms for task ${describeTaskId(maxWait.task)} sig ${maxWait.sig} -> **starvation**: higher-priority queues (or one slow handler) delayed it. Check priorities in app_task_table[].`
       );
     }
   }
@@ -290,7 +290,7 @@ export function analyzeLog(raw: string, corpus: Corpus): string {
     for (const s of sigTrace) freq.set(s, (freq.get(s) ?? 0) + 1);
     const last = sigTrace.slice(-5);
     findings.push(
-      `Signal trace: ${sigTrace.length} \`-SIG->\` line(s); last before end: ${last.map((s) => `\`${s}\``).join(" → ")}.`
+      `Signal trace: ${sigTrace.length} \`-SIG->\` line(s); last before end: ${last.map((s) => `\`${s}\``).join(" -> ")}.`
     );
     if (fatalHits.length || raw.includes("[fatal]")) {
       interpretation.push(
@@ -305,10 +305,10 @@ export function analyzeLog(raw: string, corpus: Corpus): string {
     }
   }
 
-  // ---- 6. Boot banners → reboot loop ---------------------------------------
+  // ---- 6. Boot banners -> reboot loop ---------------------------------------
   const boots = (raw.match(/App run mode:/g) ?? []).length;
   if (boots >= 2) {
-    findings.push(`**${boots} boot banners** ("App run mode:") in one capture → the board restarted ${boots - 1}×.`);
+    findings.push(`**${boots} boot banners** ("App run mode:") in one capture -> the board restarted ${boots - 1}×.`);
     interpretation.push(
       `- Repeated restarts: if no FATAL tag appears between banners, suspect the **watchdog** (a blocking handler) or power/brown-out. Run \`fatal l\` - rising fatal_times means FATALs; rising restart_times alone means watchdog/power.`
     );
@@ -326,7 +326,7 @@ export function analyzeLog(raw: string, corpus: Corpus): string {
       "1. Confirm log gates are compiled in: `-DAPP_DBG_EN -DAPP_DBG_SIG_EN` (CONSOLE_OPTION in application/Makefile); console is 115200 8N1.",
       "2. Run safe shell commands and re-analyze: `ver`, `fatal l`, `fatal m` (e.g. `python ak-console.py --port <P> --cmd \"ver\" --cmd \"fatal l\"`).",
       "3. For live behavior, capture 10–30 s of `-SIG->` trace: `python ak-console.py --port <P> --watch 20`.",
-      "4. See guide `debug-uart-shell` (ak://guide/debug-uart-shell) for the symptom→action playbook.",
+      "4. See guide `debug-uart-shell` (ak://guide/debug-uart-shell) for the symptom->action playbook.",
     ].join("\n");
   }
 

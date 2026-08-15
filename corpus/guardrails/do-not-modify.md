@@ -67,10 +67,10 @@ Only the active-object handlers `void task_xxx(ak_msg_t*)` that are **registered
 `app/task_list.h`** may use the `task_` prefix (file name and function name). Do **not** prefix
 any other file, helper, or function with `task_`.
 
-- Screens → `scr_*` (`scr_clock.cpp`, `scr_clock_handle`).
-- Drivers → `<device>_*` (`relay_on`).
-- Board IO → `io_*` / `led_*` in `io_cfg.c`.
-- Feature helpers → `<feature>_*`.
+- Screens -> `scr_*` (`scr_clock.cpp`, `scr_clock_handle`).
+- Drivers -> `<device>_*` (`relay_on`).
+- Board IO -> `io_*` / `led_*` in `io_cfg.c`.
+- Feature helpers -> `<feature>_*`.
 
 **Why:** `task_*` should mean exactly one thing - "an AK task" - so the task list, the code, and
 the debug logs (`taskID`, `-SIG->`) stay unambiguous.

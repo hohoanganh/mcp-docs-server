@@ -97,7 +97,7 @@ export function parseLcdDump(text: string): LcdFrame {
 
 /**
  * Render as text, two vertical pixels per character (▀ ▄ █ ·), framed.
- * 128×64 → 32 lines of 128 chars - compact enough to paste, dense enough to read.
+ * 128×64 -> 32 lines of 128 chars - compact enough to paste, dense enough to read.
  */
 export function renderLcdAscii(fb: LcdFrame, invert = false): string {
   const on = (x: number, y: number) => lcdPixel(fb, x, y) === (invert ? 0 : 1);
@@ -224,7 +224,7 @@ function zlibStored(raw: Uint8Array): Uint8Array {
 
 /**
  * Encode the framebuffer as a 1-bit grayscale PNG, scaled up by an integer
- * factor (crisp pixels). scale=4 → 512×256, ~1–22 KB total.
+ * factor (crisp pixels). scale=4 -> 512×256, ~1–22 KB total.
  */
 export function encodeLcdPng(fb: LcdFrame, scale = 4, invert = false): Uint8Array {
   const W = fb.width * scale;

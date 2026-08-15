@@ -366,7 +366,7 @@ export function createAkServer(corpus: Corpus): McpServer {
           .min(1)
           .max(8)
           .optional()
-          .describe("PNG upscale factor (default 4 → 512×256)."),
+          .describe("PNG upscale factor (default 4 -> 512×256)."),
         invert: z
           .boolean()
           .optional()

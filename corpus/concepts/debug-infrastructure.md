@@ -44,17 +44,17 @@ prints one line per handled message:
 taskID: 5	msgType:0x80	refCnt:0	sig:11		waitTime:0	exeTime:2
 ```
 
-- `waitTime` = ms the message sat in the queue (large → starvation by higher-priority work).
-- `exeTime` = ms the handler ran (large → run-to-completion violation; keep handlers short).
+- `waitTime` = ms the message sat in the queue (large -> starvation by higher-priority work).
+- `exeTime` = ms the handler ran (large -> run-to-completion violation; keep handlers short).
 
 The same records are also kept in a RAM ring (`AK_TASK_OBJ_LOG_ENABLE`, on by default) and
 are flushed to external flash on FATAL - readable later with the shell command `fatal m`.
 
 ## 2. Console RX path (how typed commands reach code)
 
-ISR RX bytes → `ring_buffer_console_rev` → polling task `task_polling_console` (runs when no
-messages pending) accumulates until CR/LF → posts the line as a common message
-(`AC_SHELL_LOGIN_CMD`) to `task_shell` → `cmd_line` parser matches the first word against
+ISR RX bytes -> `ring_buffer_console_rev` -> polling task `task_polling_console` (runs when no
+messages pending) accumulates until CR/LF -> posts the line as a common message
+(`AC_SHELL_LOGIN_CMD`) to `task_shell` -> `cmd_line` parser matches the first word against
 `lgn_cmd_table[]` in `shell.cpp` and calls the handler.
 
 Consequence: the shell **only responds while the kernel loop is alive**. If the board is hard-
@@ -101,5 +101,5 @@ still works.
 | What is on the OLED (headless)? | shell `lcd d` (framebuffer dump) |
 
 The actionable playbook - connection commands, the full shell reference, and the
-symptom→action matrix - is in [guide: debug-uart-shell](ak://guide/debug-uart-shell).
+symptom->action matrix - is in [guide: debug-uart-shell](ak://guide/debug-uart-shell).
 Paste any captured output into the **`analyze_ak_log`** tool for automatic diagnosis.

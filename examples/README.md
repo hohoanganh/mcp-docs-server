@@ -42,7 +42,7 @@ Claude Desktop connects to stdio servers, so the example bridges the remote URL 
 with **mcp-remote** (needs Node on PATH). Copy [`claude-desktop.json`](claude-desktop.json)
 into the config file, then restart Claude Desktop.
 
-> On Pro/Max/Team/Enterprise you can instead add it via **Settings → Connectors → Add custom
+> On Pro/Max/Team/Enterprise you can instead add it via **Settings -> Connectors -> Add custom
 > connector** and paste `https://ak-mcp.<your-account>.workers.dev/mcp` directly (no bridge).
 
 ## Codex (CLI + IDE extension)
@@ -57,7 +57,7 @@ codex mcp add ak-docs -- npx -y mcp-remote https://ak-mcp.<your-account>.workers
 
 ## Cline (VS Code extension)
 
-Open the Cline panel → **MCP Servers** icon → **Configure MCP Servers** (this opens
+Open the Cline panel -> **MCP Servers** icon -> **Configure MCP Servers** (this opens
 `cline_mcp_settings.json`), then paste the contents of
 [`cline-mcp-settings.json`](cline-mcp-settings.json). It uses `type: "streamableHttp"` and
 **auto-approves** the five read-only tools (safe - this server only reads docs).
@@ -66,7 +66,7 @@ Open the Cline panel → **MCP Servers** icon → **Configure MCP Servers** (thi
 
 ## Steering file (recommended for all clients)
 
-[`copilot-instructions.md`](copilot-instructions.md) makes the agent *actually use* the server —
+[`copilot-instructions.md`](copilot-instructions.md) makes the agent *actually use* the server -
 consulting `get_ak_guardrails` / `get_ak_guide` before writing firmware. Copy it to:
 
 - GitHub Copilot / VS Code: `.github/copilot-instructions.md`

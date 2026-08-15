@@ -33,8 +33,8 @@ corpus/ (hand-written guides,        scripts/build-corpus ┘─► generated/co
          guardrails, enrichment) ───────────────────────────►      (docs + BM25 index)
                                                                       │
                                           src/core (resources + tools + prompts)
-                                          ├── src/worker  →  Cloudflare Worker (remote HTTP)
-                                          └── src/cli     →  npx ak-mcp (stdio, local)
+                                          ├── src/worker  ->  Cloudflare Worker (remote HTTP)
+                                          └── src/cli     ->  npx ak-mcp (stdio, local)
 ```
 
 Những file header của kernel chứa các định nghĩa hàm cần dùng. Cách sử dụng được lưu trong `/corpus/enrichment`. CI sẽ kiểm tra xem định nghĩa hàm có bị lệch khỏi quy chuẩn ban đầu hay không.

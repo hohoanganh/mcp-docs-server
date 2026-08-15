@@ -34,8 +34,8 @@ corpus/ (hand-written guides,        scripts/build-corpus ┘─► generated/co
          guardrails, enrichment) ───────────────────────────►      (docs + BM25 index)
                                                                       │
                                           src/core (resources + tools + prompts)
-                                          ├── src/worker  →  Cloudflare Worker (remote HTTP)
-                                          └── src/cli     →  npx ak-mcp (stdio, local)
+                                          ├── src/worker  ->  Cloudflare Worker (remote HTTP)
+                                          └── src/cli     ->  npx ak-mcp (stdio, local)
 ```
 
 Signatures come from the vendored kernel headers; semantics/examples are layered on per symbol (`corpus/enrichment/`). A CI **drift check** fails if any cross-reference points at a symbol the headers no longer define.
@@ -52,8 +52,8 @@ Signatures come from the vendored kernel headers; semantics/examples are layered
 | `list_ak_api(module?)` | browse the API by module (task/message/timer/fsm/tsm/ak/port) |
 | `get_ak_guide(topic)` | recipes: start-project, create-task, create-driver, create-screen, use-timer, isr-bridge, tune-pools, **debug-uart-shell**, **kernel-task-log**, **agent-workflow** |
 | `get_ak_guardrails()` | do-not-modify zones + kernel invariants |
-| `analyze_ak_log(log, context?)` | paste raw UART output → structured diagnosis: FATAL cause/fix, timing (run-to-completion/starvation), reboot loops, next shell commands |
-| `decode_ak_lcd(dump, scale?, invert?)` | paste a `lcd d` framebuffer dump → the OLED screen rendered as text art **and a PNG image**, with blank/bounding-box stats |
+| `analyze_ak_log(log, context?)` | paste raw UART output -> structured diagnosis: FATAL cause/fix, timing (run-to-completion/starvation), reboot loops, next shell commands |
+| `decode_ak_lcd(dump, scale?, invert?)` | paste a `lcd d` framebuffer dump -> the OLED screen rendered as text art **and a PNG image**, with blank/bounding-box stats |
 
 **Prompts:** `ak-new-project`, `ak-new-task`, `ak-new-driver`, `ak-debug` - guided scaffolding/debugging that enforces conventions and guardrails.
 
