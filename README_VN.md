@@ -8,7 +8,7 @@
 
 | [EN](README.md) | VN |
 
-**AK-MCP** được xây dựng dựa trên **[Model Context Protocol](https://modelcontextprotocol.io)** , cung cấp cho các công cụ AI hỗ trợ lập trình - khả năng truy cập và truy vấn tài liệu chính xác về **AK (Active Kernel) Framework**.
+**AK-MCP** được xây dựng dựa trên **[Model Context Protocol](https://modelcontextprotocol.io)** , cung cấp cho các AI Agent lập trình - khả năng truy cập và truy vấn tri thức chính xác về **AK (Active Kernel) Framework**.
 
 MCP Server này giúp AI agent của bạn:
 
@@ -23,7 +23,7 @@ MCP Server này giúp AI agent của bạn:
 
 ## Cách hoạt động
 
-Repo này là một repo **rời**. Các file header được chứa trong `vendor/ak-inc/` nên không cần clone thêm gì để sử dụng.
+Repo này là một repo **độc lập**. Các file header được chứa trong `vendor/ak-inc/` nên không cần tải thêm gì để sử dụng.
 
 ```
 vendor/ak-inc/*.h  ──────────────► scripts/extract.mjs ─┐   (snapshot of the kernel
@@ -37,7 +37,7 @@ corpus/ (hand-written guides,        scripts/build-corpus ┘─► generated/co
                                           └── src/cli     →  npx ak-mcp (stdio, local)
 ```
 
-Những file header của kernel chứa các định nghĩa hàm cần dùng. Cách sử dụng được lưu trong `/corpus/enrichment`. CI sẽ kiểm tra xem định nghĩa hàm có bị lệch khỏi chuẩn ban đầu hay không.
+Những file header của kernel chứa các định nghĩa hàm cần dùng. Cách sử dụng được lưu trong `/corpus/enrichment`. CI sẽ kiểm tra xem định nghĩa hàm có bị lệch khỏi quy chuẩn ban đầu hay không.
 
 ## Bộ lệnh
 
@@ -45,23 +45,21 @@ Những file header của kernel chứa các định nghĩa hàm cần dùng. C�
 
 | Tool | Mục Đích |
 | --- | --- |
-| `start_ak_project(project_name?, ref?)` | cập nhật bản mới nhất của kit và trả về một kế hoạch |
+| `start_ak_project(project_name?, ref?)` | tải bản mới nhất của AK Base Kit và trả về một thiết kế theo yêu cầu |
 | `search_ak_docs(query, section?, limit?)` | tra cứu toàn bộ dự án dựa trên thuật toán BM25 |
-| `get_ak_api(symbol)` | trả về chĩnh xách định nghĩa hàm, tham số, kết quả trả về và mã lỗi |
+| `get_ak_api(symbol)` | trả về chĩnh xác định nghĩa hàm, tham số, kết quả trả về và mã lỗi |
 | `list_ak_api(module?)` | tra cứu API theo module (task/message/timer/fsm/tsm/ak/port) |
-| `get_ak_guide(topic)` | trả về một số hướng dẫn xây dựng dự án như: start-project, create-task, create-driver, create-screen, use-timer, isr-bridge, tune-pools, **debug-uart-shell**, **kernel-task-log**, **agent-workflow** |
+| `get_ak_guide(topic)` | trả về hướng dẫn xây dựng dự án như: start-project, create-task, create-driver, create-screen, use-timer, isr-bridge, tune-pools, **debug-uart-shell**, **kernel-task-log**, **agent-workflow** |
 | `get_ak_guardrails()` | những vùng agent không được chạm đến |
 | `analyze_ak_log(log, context?)` | phân tích lỗi UART |
 | `decode_ak_lcd(dump, scale?, invert?)` | lấy hình ảnh hiện tại trên màn hình LCD |
 
-**Prompts:** `ak-new-project`, `ak-new-task`, `ak-new-driver`, `ak-debug` - Hướng dẫn xây dựng/debug theo chuẩn dự án.
+**Prompts:** `ak-new-project`, `ak-new-task`, `ak-new-driver`, `ak-debug` - Hướng dẫn xây dựng/debug theo quy tắc AK.
 
 **Debugging loop:** Debug chương trình thông qua cổng UART 115200 baud thông qua
 [`examples/ak-console.py`](examples/ak-console.py) (cho phép agent thực hiện những tác vụ có tính thay đổi lớn bằng cách thêm `--allow-destructive`), rồi đưa cho `analyze_ak_log`.
 
-`start_ak_project` tra cứu API của AK Framework trên GitHub qua trang "latest release" (sẽ sử dụng `v1.3` nếu API không thể truy cập được).
-
-**Resources:** `ak://index` và `ak://{section}/{id}` chứa tất cả nội dung MCP cần để hoạt động.
+**Resources:** `ak://index` và `ak://{section}/{id}` chứa tất cả cơ sở tri thức MCP cần để hoạt động.
 
 ## Kernel headers
 
@@ -140,7 +138,7 @@ CI (`.github/workflows/ak-mcp.yml`) build từ header, không cần checkout:
 `verify` chạy build, check lệch, test và typecheck sau đó `deploy` từ `main` khi `CLOUDFLARE_API_TOKEN` và `CLOUDFLARE_ACCOUNT_ID` được thêm vào.  Job `refresh-headers`
 (chạy bằng tay với `tag` tùy chọn, hoặc với option `repository-dispatch` với định nghĩa `firmware-updated` từ repo firmware) sẽ lấy từ `vendor/ak-inc/`, kiếm chứng, và cập nhật nếu có thay đổi.
 
-## Thêm tài liệu
+## Thêm cơ sở tri thức
 
 - **Kernel ra phiên bản mới** Chạy `npm run fetch-headers [<tag>]` để refresh `vendor/ak-inc/`, sau đó chạy `npm run build:corpus` và lưu snapshot. Các định nghĩa mới sẽ được cập nhật.
 - **Bổ sung hướng dẫn cho agent** Thêm `corpus/enrichment/<symbol>.md` để đưa chỉ dẩn cho agent.
