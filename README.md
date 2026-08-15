@@ -8,7 +8,7 @@
 
 | EN | [VN](README_VN.md) |
 
-A free, public **[Model Context Protocol](https://modelcontextprotocol.io) server** that gives AI coding tools accurate, queryable documentation for the **AK (Active Kernel)** event-driven MCU framework (firmware: [`ak-base-kit-stm32l151`](https://github.com/the-ak-foundation/ak-base-kit-stm32l151)).
+A free, public **[Model Context Protocol](https://modelcontextprotocol.io) server** that gives AI coding tools accurate, queryable knowledge base for the **AK (Active Kernel)** event-driven MCU framework (firmware: [`ak-base-kit-stm32l151`](https://github.com/the-ak-foundation/ak-base-kit-stm32l151)).
 
 It lets an AI assistant:
 
@@ -62,9 +62,6 @@ Signatures come from the vendored kernel headers; semantics/examples are layered
 - an interactive shell). Agents capture it non-interactively with
 [`examples/ak-console.py`](examples/ak-console.py) (pyserial; destructive shell commands are
 blocked unless `--allow-destructive`), then feed the text to `analyze_ak_log`.
-
-`start_ak_project` queries the GitHub "latest release" API at call time (falling back to the
-pinned `v1.3` if the API is unreachable), so new projects always start from the newest tag.
 
 **Resources:** `ak://index`, and `ak://{section}/{id}` for every concept, guide, guardrail, and API entry.
 
@@ -151,7 +148,7 @@ when `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets are set. A `refr
 `firmware-updated` from the firmware repo) re-fetches `vendor/ak-inc/`, verifies it, and commits
 the update if anything changed.
 
-## Adding documentation
+## Adding knowledge base
 
 - **The kernel released a new version?** Run `npm run fetch-headers [<tag>]` to refresh `vendor/ak-inc/`, then `npm run build:corpus` and commit the snapshot. New/changed signatures are then extracted automatically.
 - **A new API needs prose?** Add `corpus/enrichment/<symbol>.md` to give it semantics/examples (the signature is already extracted).
